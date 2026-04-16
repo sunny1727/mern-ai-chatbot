@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg-dark: #0d0d0e;
+  --bg-chat: #1e1e1f;
+  --bg-ai: #27272a;
+  --green: #10a37f;
+  --border: #3f3f46;
+}
+
+body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; overflow: hidden; }
+
+/* AUTH PAGES (LOGIN/REGISTER) */
+.auth-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--bg-dark); }
+.top-nav-line { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #ff0000, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff0000); background-size: 400%; z-index: 9999; animation: moveLine 8s linear infinite; }
+@keyframes moveLine { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
+
+.animated-title { background: linear-gradient(90deg, #fff, #10a37f, #00ffd5, #5436da, #fff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; font-weight: 800; }
+@keyframes shine { to { background-position: 200% center; } }
+
+.auth-card-wrapper { position: relative; padding: 2px; border-radius: 16px; overflow: hidden; display: flex; justify-content: center; align-items: center; }
+.auth-card-wrapper::before { content: ""; position: absolute; width: 150%; height: 150%; background: conic-gradient(#fff, #444, #888, #222, #fff); animation: rotate 4s linear infinite; }
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.auth-card { position: relative; background: #111113; padding: 40px; border-radius: 15px; width: 330px; text-align: center; z-index: 10; }
+.auth-input { width: 90%; padding: 12px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #333; background: #222; color: white; outline: none; }
+.auth-btn { width: 100%; padding: 12px; background: var(--green); color: white; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+/* CHAT LAYOUT (STATIC SIDEBAR) */
+.app-container { display: flex; height: 100vh; width: 100vw; }
+.sidebar { width: 260px; background: #000; display: flex; flex-direction: column; padding: 20px; border-right: 1px solid #222; height: 100vh; flex-shrink: 0; z-index: 1000;transition: transform 0.3s ease-in-out; overflow-y: auto; min-height: 100vh;max-height: 100vh;box-sizing: border-box;}
+.chat-main { flex: 1; display: flex; flex-direction: column; background: var(--bg-chat); height: 100vh; position: relative; overflow: hidden; }
+
+/* CHAT MESSAGES & HORIZONTAL SCROLL FIX */
+.chat-history { flex: 1; overflow-y: auto; overflow-x: hidden; padding-bottom: 150px; scroll-behavior: smooth; }
+.message-row { width: 100%; display: flex; justify-content: center; padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.message-row.ai { background-color: var(--bg-ai); }
+.message-content { max-width: 800px; width: 90%; display: flex; gap: 20px; }
+.text-content { flex: 1; word-wrap: break-word; font-size: 16px; line-height: 1.6; overflow-x: auto; } /* Horizontal scroll added */
+
+/* Pre (Code Block) Horizontal Scroll */
+pre { background: #1e1e1e; padding: 15px; border-radius: 8px; overflow-x: auto; border: 1px solid var(--border); max-width: 100%; }
+code { font-family: 'Courier New', monospace; color: #efefef; }
+
+/* INPUT AREA (DOWN & FIXED) */
+.input-area { position: absolute; bottom: 0; left: 0; width: 100%; padding: 10px 0 20px 0; background: linear-gradient(transparent, var(--bg-chat) 30%); display: flex; justify-content: center; z-index: 10; }
+.input-wrapper { max-width: 800px; width: 90%; background: #343541; border-radius: 12px; padding: 12px 18px; display: flex; align-items: center; border: 1px solid var(--border); box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+.chat-input { flex: 1; background: transparent; border: none; color: white; font-size: 16px; outline: none; }
+.send-btn { background: transparent; border: none; color: var(--green); cursor: pointer; font-size: 24px; }
+
+/* HAMBURGER MENU & MOBILE */
+.mobile-header { display: none; padding: 12px 15px; background: #000; border-bottom: 1px solid #333; justify-content: space-between; align-items: center; }
+.side-btn { background: #202123; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 6px; margin-bottom: 12px; cursor: pointer; text-align: left; font-size: 14px; width: 100%;}
+.delete-btn { border-color: #7f1d1d; color: #f87171; }
+.side-dev-name {margin-top: auto; border-top: 1px solid #333; padding-top: 15px;}
+@media (max-width: 768px) {
+  .sidebar { position: fixed; left: 0; transform: translateX(-100%); height: 100vh;overflow-y: auto;box-sizing: border-box;}
+  .sidebar.open { transform: translateX(0); }
+  .mobile-header { display: flex; }
+  .message-row { padding: 20px 15px; }
+  .chat-history { padding-bottom: 100px; }
+}
