@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 const Signup = () => {
     const [form, setForm] = useState({ username: '', password: '' });
     const navigate = useNavigate();
-    const API_URL = "http://localhost:5000/api";
+    const API_URL = "https://mern-ai-chatbot-sunny1727.onrender.com/api";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
