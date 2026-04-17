@@ -50,7 +50,7 @@ body, html {
 }
 
 /* CHAT MESSAGES & HORIZONTAL SCROLL FIX */
-.chat-history { flex: 1; overflow-y: auto; overflow-x: hidden; padding-bottom: 150px; scroll-behavior: smooth; min-height: 0;}
+.chat-history { flex: 1; overflow-y: auto; overflow-x: hidden; padding-bottom: 150px; scroll-behavior: auto; min-height: 0;}
 .message-row { width: 100%; display: flex; justify-content: center; padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .message-row.ai { background-color: var(--bg-ai); }
 .message-content { max-width: 800px; width: 90%; display: flex; gap: 20px; }
