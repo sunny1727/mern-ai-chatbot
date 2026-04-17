@@ -84,7 +84,17 @@ code { font-family: 'Courier New', monospace; color: #efefef; }
     z-index: 999;
 }
 @media (max-width: 768px) {
-  .sidebar { position: fixed; left: 0; transform: translateX(-100%); height: 100vh; overflow-y: auto; box-sizing: border-box; }
+  .sidebar { 
+    position: fixed; 
+    left: 0; 
+    transform: translateX(-100%); 
+    height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   .sidebar.open { transform: translateX(0); }
   .mobile-header { display: flex !important; position: fixed !important; top: 0; left: 0; width: 100%; z-index: 500; }
   .chat-history { padding-top: 60px; padding-bottom: 120px; }
