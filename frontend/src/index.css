@@ -8,7 +8,16 @@
   --border: #3f3f46;
 }
 
-body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; overflow: hidden; }
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-dark);
+  color: white;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
 /* AUTH PAGES (LOGIN/REGISTER) */
 .auth-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--bg-dark); padding-bottom: 70px; box-sizing: border-box;}
@@ -27,7 +36,7 @@ body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', sans-ser
 
 /* CHAT LAYOUT (STATIC SIDEBAR) */
 .app-container { display: flex; height: 100vh; width: 100vw; }
-.sidebar { width: 260px; background: #000; display: flex; flex-direction: column; padding: 20px; border-right: 1px solid #222; height: 100vh; flex-shrink: 0; z-index: 1000;transition: transform 0.3s ease-in-out; overflow-y: auto; min-height: 100vh;max-height: 100vh;box-sizing: border-box;}
+.sidebar { width: 260px; background: #000; display: flex; flex-direction: column; padding: 20px; border-right: 1px solid #222; height: 100vh; flex-shrink: 0; z-index: 1000;transition: transform 0.3s ease-in-out; overflow-y: auto; min-height: 100vh;max-height: 100vh;box-sizing: border-box; justify-content: space-between;}
 .chat-main { 
     flex: 1; 
     display: flex; 
@@ -41,7 +50,7 @@ body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', sans-ser
 }
 
 /* CHAT MESSAGES & HORIZONTAL SCROLL FIX */
-.chat-history { flex: 1; overflow-y: auto; overflow-x: hidden; padding-bottom: 150px; scroll-behavior: smooth; }
+.chat-history { flex: 1; overflow-y: auto; overflow-x: hidden; padding-bottom: 150px; scroll-behavior: smooth; min-height: 0;}
 .message-row { width: 100%; display: flex; justify-content: center; padding: 30px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .message-row.ai { background-color: var(--bg-ai); }
 .message-content { max-width: 800px; width: 90%; display: flex; gap: 20px; }
@@ -73,7 +82,7 @@ code { font-family: 'Courier New', monospace; color: #efefef; }
 }
 .side-btn { background: #202123; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 6px; margin-bottom: 12px; cursor: pointer; text-align: left; font-size: 14px; width: 100%;}
 .delete-btn { border-color: #7f1d1d; color: #f87171; }
-.side-dev-name {margin-top: auto; border-top: 1px solid #333; padding-top: 15px;}
+.side-dev-name {margin-top: auto; border-top: 1px solid #333; padding-top: 15px; padding-bottom: 10px;}
 .menu-overlay {
     position: fixed;
     top: 0;
