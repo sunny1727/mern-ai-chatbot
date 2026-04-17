@@ -11,7 +11,7 @@
 body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; overflow: hidden; }
 
 /* AUTH PAGES (LOGIN/REGISTER) */
-.auth-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--bg-dark); }
+.auth-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--bg-dark); padding-bottom: 80px; box-sizing: border-box;}
 .top-nav-line { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #ff0000, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff0000); background-size: 400%; z-index: 9999; animation: moveLine 8s linear infinite; }
 @keyframes moveLine { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
 
@@ -48,10 +48,31 @@ code { font-family: 'Courier New', monospace; color: #efefef; }
 .send-btn { background: transparent; border: none; color: var(--green); cursor: pointer; font-size: 24px; }
 
 /* HAMBURGER MENU & MOBILE */
-.mobile-header { display: none; padding: 12px 15px; background: #000; border-bottom: 1px solid #333; justify-content: space-between; align-items: center; }
+.mobile-header { 
+    display: none; 
+    padding: 12px 15px; 
+    background: #000; 
+    border-bottom: 1px solid #333; 
+    justify-content: space-between; 
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+}
 .side-btn { background: #202123; border: 1px solid #333; color: #fff; padding: 12px; border-radius: 6px; margin-bottom: 12px; cursor: pointer; text-align: left; font-size: 14px; width: 100%;}
 .delete-btn { border-color: #7f1d1d; color: #f87171; }
 .side-dev-name {margin-top: auto; border-top: 1px solid #333; padding-top: 15px;}
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 999;
+}
 @media (max-width: 768px) {
   .sidebar { position: fixed; left: 0; transform: translateX(-100%); height: 100vh;overflow-y: auto;box-sizing: border-box;}
   .sidebar.open { transform: translateX(0); }
