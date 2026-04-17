@@ -11,7 +11,7 @@
 body, html { margin: 0; padding: 0; height: 100%; font-family: 'Inter', sans-serif; background: var(--bg-dark); color: white; overflow: hidden; }
 
 /* AUTH PAGES (LOGIN/REGISTER) */
-.auth-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--bg-dark); padding-bottom: 80px; box-sizing: border-box;}
+.auth-container { height: 100vh; display: flex; justify-content: center; align-items: center; background: var(--bg-dark); padding-bottom: 70px; box-sizing: border-box;}
 .top-nav-line { position: fixed; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #ff0000, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff0000); background-size: 400%; z-index: 9999; animation: moveLine 8s linear infinite; }
 @keyframes moveLine { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
 

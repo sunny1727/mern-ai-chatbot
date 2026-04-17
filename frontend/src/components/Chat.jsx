@@ -58,7 +58,7 @@ const Chat = () => {
                 </div>
             </div>
             {isSidebarOpen && <div className="menu-overlay" onClick={() => setIsSidebarOpen(false)}></div>}
-            <div className="chat-main" onClick={() => setIsSidebarOpen(false)}>
+            <div className="chat-main">
                 <div className="mobile-header">
                     <button onClick={(e) => {e.stopPropagation(); setIsSidebarOpen(true)}} style={{background:'none', border:'none', cursor:'pointer'}}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
