@@ -8,23 +8,29 @@ const Chat = () => {
     const [loading, setLoading] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState(null);
-    const scrollRef = useRef(null);
+    const chatRef = useRef(null);
     const API_URL = "https://mern-ai-chatbot-sunny1727.onrender.com/api";
     const token = localStorage.getItem('token');
 
     const copyIcon = <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>;
     const checkIcon = <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10a37f" strokeWidth="3"><polyline points="20 6 9 17 4 12"></polyline></svg>;
-    
-        
+
     useEffect(() => {
         const fetchHistory = async () => {
-            try { const res = await axios.get(`${API_URL}/chat/history`, { headers: { Authorization: token } }); setHistory(res.data); }
+            try { 
+                const res = await axios.get(`${API_URL}/chat/history`, { headers: { Authorization: token } }); 
+                setHistory(res.data); 
+            }
             catch (err) { console.log(err); }
         };
         fetchHistory();
     }, []);
 
-    useEffect(() => { scrollRef.current?.scrollIntoView({ behavior: "auto" }); }, [history]);
+    useEffect(() => { 
+        if (chatRef.current) {
+            chatRef.current.scrollTop = chatRef.current.scrollHeight;
+        }
+    }, [history, loading]);
 
     const handleChat = async (e) => {
         e.preventDefault();
@@ -49,16 +55,18 @@ const Chat = () => {
         <div className="app-container">
             <div className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
                 <div>
-                <h2 className="animated-title" style={{fontSize: '22px', textAlign: 'center'}}>SUNNY AI PRO</h2>
-                <button onClick={clearHistory} className="side-btn delete-btn">+ New Chat</button>
-                <button onClick={() => {localStorage.clear(); window.location.href='/login'}} className="side-btn">Logout</button>
+                    <h2 className="animated-title" style={{fontSize: '22px', textAlign: 'center'}}>SUNNY AI PRO</h2>
+                    <button onClick={clearHistory} className="side-btn delete-btn">+ New Chat</button>
+                    <button onClick={() => {localStorage.clear(); window.location.href='/login'}} className="side-btn">Logout</button>
                 </div>
                 <div className="side-dev-name"> 
                     <span style={{color: '#8e8ea0', fontSize: '12px'}}>Developed by:</span><br/>
-                    <strong className="animated-title" style={{fontSize: '18px',display: 'block',marginTop: '3px'}}>SUNNY SINGH</strong>
+                    <strong className="animated-title" style={{fontSize: '18px', display: 'block', marginTop: '3px'}}>SUNNY SINGH</strong>
                 </div>
             </div>
+
             {isSidebarOpen && <div className="menu-overlay" onClick={() => setIsSidebarOpen(false)}></div>}
+
             <div className="chat-main">
                 <div className="mobile-header">
                     <button onClick={(e) => {e.stopPropagation(); setIsSidebarOpen(true)}} style={{background:'none', border:'none', cursor:'pointer'}}>
@@ -72,7 +80,7 @@ const Chat = () => {
                     <div style={{width: '24px'}}></div>
                 </div>
 
-                <div className="chat-history">
+                <div className="chat-history" ref={chatRef}>
                     {history.map((chat, i) => (
                         <div key={i}>
                             <div className="message-row user">
@@ -96,8 +104,14 @@ const Chat = () => {
                             </div>
                         </div>
                     ))}
-                    {loading && <div className="message-row ai"><div className="message-content"><div className="avatar" style={{background: '#10a37f'}}>AI</div><div className="text-content">Thinking...</div></div></div>}
-                    <div ref={scrollRef} />
+                    {loading && (
+                        <div className="message-row ai">
+                            <div className="message-content">
+                                <div className="avatar" style={{background: '#10a37f'}}>AI</div>
+                                <div className="text-content">Thinking...</div>
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <div className="input-area">
